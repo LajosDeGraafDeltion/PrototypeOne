@@ -16,12 +16,4 @@ public class PickUp : MonoBehaviour {
     {
 		
 	}
-
-    private void OnTriggerEnter(Collider cointrigger)
-    {
-        if (cointrigger.collider.tag  = "coin")
-        {
-
-        }
-    }
 }
