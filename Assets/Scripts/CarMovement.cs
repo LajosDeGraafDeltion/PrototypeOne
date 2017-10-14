@@ -9,11 +9,12 @@ public class CarMovement : MonoBehaviour {
     public float rotSpeed;
     public float moveV;
     public float turnH;
-    public float brakeSpeed;
-    public float boostActive;
+    public float totalFuel;
+    public float currentFuel;
     public float totalHealth;
     public float currentHealth;
     public Image hpBar;
+    public Image fuelBar;
 
     public AudioClip horn;
     public AudioClip crash;
@@ -22,6 +23,8 @@ public class CarMovement : MonoBehaviour {
     {
         GetComponents<AudioSource>()[1].clip = horn;
         GetComponents<AudioSource>()[0].clip = crash;
+        currentFuel = totalFuel;
+        currentHealth = totalHealth;
 
     }
 
@@ -31,6 +34,23 @@ public class CarMovement : MonoBehaviour {
         {
             GetComponents<AudioSource>()[1].Play();
         }
+
+        if (moveV > 0)
+        {
+            currentFuel -= moveV * 0.5f * Time.deltaTime;
+            fuelBar.fillAmount = currentFuel / totalFuel;
+        }
+
+        if (moveV < 0)
+        {
+            currentFuel += moveV * 0.5f * Time.deltaTime;
+            fuelBar.fillAmount = currentFuel / totalFuel;
+        }
+
+        if (currentFuel >= totalFuel)
+        {
+            currentFuel = totalFuel;
+        }
     }
 
     void FixedUpdate ()
@@ -38,11 +58,16 @@ public class CarMovement : MonoBehaviour {
         moveV = Input.GetAxis("Vertical") * moveSpeed;
         turnH = Input.GetAxis("Horizontal") * rotSpeed;
         transform.Translate(0, 0, moveV * Time.deltaTime);
-        if (moveV != 0)
+        if (moveV > 0)
         {
             transform.Rotate(0, turnH, 0 * Time.deltaTime);
         }
-	}
+
+        if (moveV < 0)
+        {
+            transform.Rotate(0, -turnH, 0 * Time.deltaTime);
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag != "Ground")

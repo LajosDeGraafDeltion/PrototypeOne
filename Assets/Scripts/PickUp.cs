@@ -2,18 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickUp : MonoBehaviour {
+public class PickUp : MonoBehaviour
+{
 
     public int value;
 
-	void Start ()
+    void Start()
     {
-		
-	}
-	
 
-	void Update ()
-    {
-		
-	}
+    }
 }
