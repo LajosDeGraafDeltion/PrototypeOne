@@ -5244,7 +5244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf8dfc70d91cd6459c70772eb13632a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 10
   rotSpeed: 1
   moveV: 0
   turnH: 0
@@ -5252,8 +5252,12 @@ MonoBehaviour:
   currentFuel: 0
   totalHealth: 100
   currentHealth: 0
+  damage: 150
   hpBar: {fileID: 2132216632}
   fuelBar: {fileID: 1389210566}
+  rbPlayer: {fileID: 0}
+  hit: 0
+  magnitude: 0
   horn: {fileID: 8300000, guid: 8568bd563c8c7614397df0dce0a3db28, type: 3}
   crash: {fileID: 8300000, guid: fc0f1db8817a3bc49a62a6005f4fb72d, type: 3}
 --- !u!82 &2090148595
