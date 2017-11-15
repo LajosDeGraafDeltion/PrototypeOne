@@ -58,8 +58,6 @@ public class CarMovement : MonoBehaviour {
         {
             currentFuel = totalFuel;
         }
-
-        magnitude = rbPlayer.velocity.magnitude;
     }
 
     void FixedUpdate ()
@@ -82,10 +80,11 @@ public class CarMovement : MonoBehaviour {
         if (collision.collider.tag != "Ground")
         {
             hit = true;
-            if (collision.collider.tag != "Ground" && collision.relativeVelocity.magnitude != 0)
+            if (collision.collider.tag != "Ground" && hit == true)
             {
                 GetComponents<AudioSource>()[0].Play();
-                currentHealth -= damage * Mathf.Abs(collision.relativeVelocity.magnitude);
+                currentHealth -= damage * Mathf.Abs(Input.GetAxis("Vertical"));
+                currentHealth -= damage * Mathf.Abs(Input.GetAxis("Horizontal"));
                 hpBar.fillAmount = currentHealth / totalHealth;
                 hit = false;
             }
